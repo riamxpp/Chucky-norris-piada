@@ -1,27 +1,36 @@
-import { useState, useCallback } from "react";
+import { useCallback, useState } from "react";
 
-const useFetch = (link: string, options?: {}) => {
-  const [loading, setLoading] = useState(false);
+// async function useFetch(url: string) {
+//   const [data, setData] = useState({});
+//   fetch(url)
+//     .then((response) => {
+//       if (!response.ok) {
+//         throw new Error();
+//       }
+//       return response.json();
+//     })
+//     .then((json) => {
+//       setData(json);
+//     });
+//   return {
+//     data,
+//   };
+// }
 
+export const useFetch = (url: string) => {
+  const [data, setData] = useState("");
+  const [loading, setLoading] = useState("");
+  const [error, setError] = useState("");
   const request = useCallback(async () => {
-    let response;
-    let json;
-    try {
-      setLoading(true);
-      response = await fetch(link, options);
-      json = await response.json();
-    } catch (err) {
-      json = null;
-    } finally {
-      setLoading(false);
-      return { response, json };
-    }
-  }, [link, options]);
+    const response = await fetch(url);
+    const json = await response.json();
+    
+  }, []);
 
   return {
-    loading,
     request,
+    data,
+    loading,
+    error,
   };
 };
-
-export default useFetch;
