@@ -29,6 +29,7 @@ body {
 .joke {
   padding: 4rem 2rem;
   font-weight: 400;
+  height: 2rem;
 }
 
 .options {
@@ -37,11 +38,15 @@ body {
   justify-content: space-evenly;
 }
 
-.options button {
+.button {
   padding: 0.4rem;
   cursor: pointer;
   border-radius: 0.4rem;
   border: 1px solid #333;
+}
+
+.button:hover {
+  background-color: #e2dede;
 }
 
 .saves {
