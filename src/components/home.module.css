@@ -1,0 +1,58 @@
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  background: linear-gradient(
+    90deg,
+    rgba(2, 0, 36, 1) 0%,
+    rgba(9, 81, 147, 1) 69%,
+    rgba(39, 100, 132, 1) 100%,
+    rgba(0, 212, 255, 1) 100%
+  );
+}
+.wrapper {
+  background-color: #e0dede;
+  width: 40rem;
+  height: 20rem;
+  border: 4px solid #db7210;
+  border-radius: 0.4rem;
+  padding: 0.4rem;
+  box-shadow: 0 0 0 4px #333, 0 0 0 8px #db7210;
+}
+
+.container {
+  height: 100%;
+}
+
+.joke {
+  padding: 4rem 2rem;
+  font-weight: 400;
+}
+
+.options {
+  margin-top: 4rem;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.options button {
+  padding: 0.4rem;
+  cursor: pointer;
+  border-radius: 0.4rem;
+  border: 1px solid #333;
+}
+
+.saves {
+  color: black;
+  border: 1px solid #333;
+  text-decoration: none;
+  padding: 0.4rem;
+  border-radius: 0.4rem;
+  background: #fff;
+}
+
+.loading {
+  color: #fff;
+}

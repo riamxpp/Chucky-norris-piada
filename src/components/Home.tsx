@@ -1,20 +1,40 @@
-import React, { useEffect, useState } from "react";
-import { JokeResult } from "./interfaces/JokeResult";
+import Joke from "./Joke";
+import style from "./home.module.css";
+import { Link } from "react-router-dom";
+import { useState } from "react";
 
 const Home = () => {
-  const [date, setDate] = useState<JokeResult[]>([]);
-  useEffect(() => {
-    async function request() {
-      const response = await fetch("https://api.chucknorris.io/jokes/random");
-      const json = await response.json();
-      if (response.ok) {
-        setDate([json.id, json.value, json.created_at]);
-        console.log(json);
-      }
-    }
-    request();
-  }, []);
+  const [saveJoke, setSaveJoke] = useState<Array<string>>([]);
+  const [changedJoke, setChangedJoke] = useState<string>("");
 
-  return <div>{date && <p>{date[1]}</p>}</div>;
+  const { date, loading, error, updateJoke } = Joke();
+  function saveJokeOnList(): void {
+    setSaveJoke([...saveJoke, date[0].value]);
+  }
+
+  function changeActualJoke(): void {
+    updateJoke();
+    setChangedJoke(date[0].value);
+  }
+
+  if (date.length === 0) return null;
+  if (loading) return <div className={style.loading}>Loading...</div>;
+  if (error) return <div>Error!!!</div>;
+  return (
+    <div className={style.wrapper}>
+      <div className={style.container}>
+        <div className={style.joke}>
+          {changedJoke ? changedJoke : date[0].value}
+        </div>
+        <div className={style.options}>
+          <button onClick={changeActualJoke}>Gerar piada</button>
+          <button onClick={saveJokeOnList}>Salvar piada</button>
+          <Link to="saves" className={style.saves}>
+            Ver piada salvar
+          </Link>
+        </div>
+      </div>
+    </div>
+  );
 };
 export default Home;
